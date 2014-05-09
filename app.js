@@ -15,7 +15,7 @@ app.get('/shop', function(req, res) {
       data += chunk;
     });
     apiRes.on('end', function() {
-      var obj = JSON.parse(data);
+      var obj = data ? JSON.parse(data) : [];
       res.send(obj.map(function(widget) {
         return "<p>" + widget.name + ", " + widget.price_cents + "</p>";
       }).join("\n"));
